@@ -1,0 +1,36 @@
+#include <iostream>
+
+// polymorphism - allows derived classes to override methods inherited from base classes, with same function signature
+
+class Animal {
+  public:
+    void action() {
+      std::cout << "The animal does something.\n";
+    }
+}
+
+class Fish: public Animal {
+  public:
+    void action() {
+      std::cout << "Fish swim.\n";
+    }
+};
+
+class Bird: public Animal {
+  public:
+    void action() {
+      std::cout << "Birds fly. \n";
+    }
+};
+
+int main() {
+  Animal newAnimal;
+  Fish newFish;
+  Bird newBird;
+
+  newAnimal.action():
+  newFisth.action():
+  newBird.action();
+
+  return 0;
+}

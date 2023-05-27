@@ -7,22 +7,37 @@
 #include <algorithm>
 #include <iostream>
 #include <string>
+#include <list>
+#include <set>
+
+using std::copy;
+using std::cout;
+using std::cin;
+using std::ostream_iterator;
+using std::pair;
+using std::string;
+
+typedef std::set<string> WordSet;
+typedef WordSet::iterator WordIter;
+typedef std::list<WordIter> Index;
+
 
 int main() {
-  string word;
-  string words[10]; // should be dynamic
-  int words_idx = 0;
-  while (1) {
-    std::cin >> word;
-    if string::strcmp(word, "Quit") {
-      break;
-    }
-    // if word does not equal any of previously entered words
-    words[words_idx] = word;
-    words_idx += 1;
+  WordSet words;
+  Index input_order;
+
+  // input the words uniquely
+  for (string new_word; cin >> new_word, new_word != "Quit";) {
+    pair<WordIter, bool> &trace = words.insert(new_word);
+    if (trace.second) 
+      input_order.push_back(trace.first)
   }
 
-  for (int k = 0; k < words.length(); ++k) {
-    std::cout << word << std::endl;
-  }
+  // output unique words in order of input
+  copy(input_order.begin(), input_order.end(), ostream_iterator<string>(cout, "\n"));
+
+  // output unique words in default set<string> order
+  copy(words.begin(), words.end(), ostream_iterator<string>(cout, "\n"));
+
+  return 0;
 }
